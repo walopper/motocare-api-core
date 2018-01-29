@@ -1,0 +1,28 @@
+{
+  "name": "motocare-api-core",
+  "version": "1.0.0",
+  "description": "Motocare API based core",
+  "main": "./src/server.js",
+  "scripts": {
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walopper/motocare-api-core.git"
+  },
+  "author": "Alejandro Rodriguez @Fleetmailer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/walopper/motocare-api-core.git/issues"
+  },
+  "homepage": "https://github.com/walopper/motocare-api-core.git#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0",
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "logger": "^0.0.1"
+  }
+}
