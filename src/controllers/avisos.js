@@ -7,7 +7,7 @@ const AvisosController = {
 	 */
 	getAviso: async (id) => {
 
-		let avisoData = await db.query(
+		let queryResults = await db.query(
 			{
 				sql: 'SELECT * FROM avisos WHERE id = ?'
 			}, 
@@ -15,10 +15,43 @@ const AvisosController = {
 		);
 
 		// if user not found
-		if(avisoData.length !== 1)
+		if(queryResults.length !== 1)
 			throw {code: '014001D', message: 'No se encontro el aviso'}
 
-		return avisoData;
+		queryResults[0].images = await AvisosController.getFotos(parseInt(id));
+
+		queryResults[0].seller = await AvisosController.getSeller(queryResults[0].user_id);
+
+		return queryResults[0];
+
+	},
+
+	getFotos: async (avid) => {
+
+		let queryResults = await db.query(
+			{
+				sql: 'SELECT id, foto as filename FROM fotos WHERE avisoid = ?'
+			}, 
+			[parseInt(avid)]
+		);
+
+
+		return queryResults;
+
+	}
+
+	,
+
+	getSeller: async (uid) => {
+
+		let queryResults = await db.query(
+			{
+				sql: 'SELECT * FROM usuarios WHERE id = ?'
+			}, 
+			[parseInt(uid)]
+		);
+
+		return queryResults;
 
 	}
 
